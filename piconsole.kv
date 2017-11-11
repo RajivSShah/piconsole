@@ -1,0 +1,286 @@
+#:kivy 1.9.0
+	
+<Button>:
+	font_size: 15
+	
+BoxLayout:
+	orientation: 'horizontal'
+
+	BoxLayout:
+		# left main panel
+		size_hint_x: 2 / 3
+		orientation: 'vertical'
+	
+		BoxLayout:
+			# clock panel
+			size_hint_y: 1 / 4
+			orientation: 'vertical'
+			padding: [0, '20dp', 0, '20dp']
+			spacing: '5dp'
+			
+			Label:
+				text: app.clock_time
+				markup: True
+				font_size: 60
+		
+			Label:
+				text: app.clock_date
+				markup: True
+				font_size: 30
+			
+		BoxLayout:
+			#current weather panel
+			size_hint_y: 1 / 4
+			orientation: 'vertical'
+			padding: [0, '5dp', 0, '20dp']
+		
+			BoxLayout:
+				# condition icon and temp sub-panel
+				orientation: 'horizontal'
+				padding: ['175dp', 0, '175dp', 0]
+										
+				AsyncImage:
+					source: app.conditions_image
+					
+				Label:
+					text: app.temp
+					markup: True
+					font_size: 70
+						
+			Label:
+				text: app.temp_notes
+				markup: True
+				font_size: 20
+				text_size: self.size
+				halign: 'center'
+				valign: 'top'
+				
+		BoxLayout:
+			#weather forecast panel
+			size_hint_y: 1 / 4
+			orientation: 'horizontal'
+			
+			BoxLayout:
+				#now + 3 hrs
+				orientation: 'vertical'
+				
+				Label:
+					text: app.a_time
+					font_size: 15
+					
+				AsyncImage:
+					source: app.a_image
+					
+				Label:
+					text: app.a_temp
+					font_size: 35
+					
+				Label:
+					text: app.a_feelslike
+					font_size: 15
+
+			BoxLayout:
+				#now + 6 hrs
+				orientation: 'vertical'
+				
+				Label:
+					text: app.b_time
+					font_size: 15
+					
+				AsyncImage:
+					source: app.b_image
+					
+				Label:
+					text: app.b_temp
+					font_size: 35
+					
+				Label:
+					text: app.b_feelslike
+					font_size: 15
+
+			BoxLayout:
+				#now + 9 hrs
+				orientation: 'vertical'
+				
+				Label:
+					text: app.c_time
+					font_size: 15
+					
+				AsyncImage:
+					source: app.c_image
+					
+				Label:
+					text: app.c_temp
+					font_size: 35
+					
+				Label:
+					text: app.c_feelslike
+					font_size: 15
+					
+			BoxLayout:
+				#now + 12 hrs
+				orientation: 'vertical'
+				
+				Label:
+					text: app.d_time
+					font_size: 15
+					
+				AsyncImage:
+					source: app.d_image
+					
+				Label:
+					text: app.d_temp
+					font_size: 35
+					
+				Label:
+					text: app.d_feelslike
+					font_size: 15
+										
+		BoxLayout:
+			#openhab panel
+			size_hint_y: 1 / 6
+			orientation: 'vertical'
+			padding: [0, '20dp', 0, '10dp']
+			Label:
+				text: "[b]Sensors[/b]"
+				font_size: 20
+				markup: True
+				
+			BoxLayout:
+				orientation: 'horizontal'
+				
+				Label:
+					text: app.rm1_temp
+					font_size: 18
+					
+				Label:
+					text: app.rm2_temp
+					font_size: 18
+					
+				Label:
+					text: app.rm3_temp
+					font_size: 18
+					
+	BoxLayout:
+		# right main panel
+		size_hint_x: 1 / 3
+		orientation: 'vertical'
+		
+		BoxLayout:
+			# radio
+			size_hint_y: 5 / 8
+			orientation: 'vertical'
+							
+			BoxLayout:
+				# info display
+				size_hint_y: 1 / 2
+				padding: [0, '15dp', 0, 0]
+				orientation: 'vertical'
+			
+				Label:
+					size_hint_y: 1 / 5
+					text: app.radio_station
+					markup: True
+					font_size: 15
+					text_size: self.size
+					halign: 'center'
+					valign: 'top'
+					
+				Label:
+					size_hint_y: 2 / 5
+					text: app.radio_song_title
+					markup: True
+					font_size: 15
+					text_size: self.size
+					halign: 'center'
+					valign: 'top'
+					
+				Label:
+					size_hint_y: 2 / 5
+					text: app.radio_song_artist
+					markup: True
+					font_size: 15
+					text_size: self.size
+					halign: 'center'
+					valign: 'top'
+		
+			BoxLayout:
+				# controls
+				size_hint_y: 1 / 2
+				orientation: 'vertical'
+				
+				BoxLayout:
+					# volume control
+					orientation: 'horizontal'
+					padding: ['62dp', 0, 0, 0]
+					spacing: '25dp'
+				
+					Button:
+						size_hint: [0, 0]
+						height: '40dp'
+						width: '60dp'
+						text: "vol +"
+						on_press: app.radio_vol_up()
+				
+					Button:
+						size_hint: [0, 0]
+						height: '40dp'
+						width: '60dp'
+						text: "vol -"
+						on_press: app.radio_vol_down()
+
+				BoxLayout:
+					# station selection
+					orientation: 'horizontal'
+					padding: ['16dp', 0, 0, 0]
+					spacing: '12dp'
+				
+					Button:
+						size_hint: [0, 0]
+						height: '40dp'
+						width: '70dp'
+						text: 'Stn 1'
+						on_press: app.radio_play_stn_1()
+
+					Button:
+						size_hint: [0, 0]
+						height: '40dp'
+						width: '70dp'
+						text: "Stn 2"
+						on_press: app.radio_play_stn_2()
+				
+					Button:
+						size_hint: [0, 0]
+						height: '40dp'
+						width: '70dp'
+						text: "Stn 3"
+						on_press: app.radio_play_stn_3()
+				
+				BoxLayout:
+					orientation: 'vertical'
+					padding: ['15dp', 0, '15dp', 0]
+				
+					Button:
+						size_hint_y: 0
+						height: '40dp'
+						text: 'stop'
+						on_press: app.stop_radio()
+			
+		BoxLayout:
+			# bottom right panel
+			size_hint_y: 3 / 8
+			orientation: 'vertical'
+			padding: '15dp'
+			spacing: '10dp'			
+
+			Label:
+				# placeholder for additional button when needed
+				text: ""
+		
+			Label:
+				# placeholder for additional button when needed
+				text: ""
+
+			Label:
+				# placeholder for additional button when needed
+				text: ""
